@@ -15,6 +15,5 @@ RUN usermod -g 100 nobody
 RUN usermod -d /home nobody
 RUN chown -R nobody:users /home
 
-RUN apt-get install -y openjdk-7-jre
+RUN apt-get update && apt-get install -y default-jre && apt-get clean -y
 
-RUN apt-get clean -y
