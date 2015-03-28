@@ -11,7 +11,7 @@ ENV SCM_VERSION 1.44
 ENV SCM_PKG_URL https://maven.scm-manager.org/nexus/content/repositories/releases/sonia/scm/scm-server/${SCM_VERSION}/scm-server-${SCM_VERSION}-app.tar.gz
 ENV SCM_HOME /var/lib/scm
 
-ENV JAVA_HOME /usr/lib/jvm/default-java
+ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
 # Use baseimage-docker's init system
 #CMD ["/sbin/my_init"]
