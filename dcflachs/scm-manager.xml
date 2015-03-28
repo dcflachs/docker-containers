@@ -2,7 +2,8 @@
 <Container>
 <Name>SCM-Manager</Name>
 <Description>
-SCM-Manager
+SCM-Manager 
+The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.
 </Description>
 <Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
 <Repository>dcflachs/scm-manager</Repository>
@@ -28,6 +29,6 @@ SCM-Manager
 </Data>
 <Version></Version>
 <WebUI>http://[IP]:[PORT:9011]/</WebUI>
-<Banner>https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9</Banner>
+<Banner>https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9</Banner>
 <Icon>https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2012/Oct/27/scm-manager-logo-117284544-0_avatar.png</Icon>
 </Container>
