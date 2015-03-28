@@ -38,14 +38,30 @@ RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
     && rm -f /root/scm-server.tar.gz \
     && chown -R nobody:users /opt/scm-server
     
-#Create Data Directories
+#Create Config Directories
+RUN mkdir -p /var/lib/scm-config \
+    && mkdir -p /var/lib/scm-config/comfig \
+    && mkdir -p /var/lib/scm-config/lib \
+    && mkdir -p /var/lib/scm-config/logs \
+    && chown -R nobody:nobody /var/lib/scm-config
+    
+#Create Data Directory
+RUN mkdir -p /var/lib/scm-data \
+    && chown nobody:nobody /var/lib/scm-data
+    
+#Create SCM directory
 RUN mkdir -p /var/lib/scm \
-    && chown nobody:users /var/lib/scm
+    && ln -s /var/lib/scm-data /var/lib/scm/repositories
+    && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig
+    && ln -s /var/lib/scm-config/lib /var/lib/scm/lib
+    && ln -s /var/lib/scm-config/logs /var/lib/scm/logs
+    && chown -R nobody:nobody /var/lib/scm
 
 WORKDIR /var/lib/scm
 USER nobody
 
-VOLUME /var/lib/scm
+VOLUME /var/lib/scm-config
+VOLUME /var/lib/scm-data
 EXPOSE 8080
 
 CMD ["/opt/scm-server/bin/scm-server"]
