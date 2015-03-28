@@ -51,10 +51,10 @@ RUN mkdir -p /var/lib/scm-data \
     
 #Create SCM directory
 RUN mkdir -p /var/lib/scm \
-    && ln -s /var/lib/scm-data /var/lib/scm/repositories
-    && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig
-    && ln -s /var/lib/scm-config/lib /var/lib/scm/lib
-    && ln -s /var/lib/scm-config/logs /var/lib/scm/logs
+    && ln -s /var/lib/scm-data /var/lib/scm/repositories \
+    && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig \
+    && ln -s /var/lib/scm-config/lib /var/lib/scm/lib \
+    && ln -s /var/lib/scm-config/logs /var/lib/scm/logs \
     && chown -R nobody:users /var/lib/scm
 
 WORKDIR /var/lib/scm
