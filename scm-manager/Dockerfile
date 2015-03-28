@@ -47,12 +47,11 @@ RUN mkdir -p /var/lib/scm-config \
     
 #Create Data Directory
 RUN mkdir -p /var/lib/scm-data \
-    && mkdir -p /var/lib/scm-data/repositories \
-    && chown -R nobody:nobody /var/lib/scm-data
+    && chown nobody:nobody /var/lib/scm-data
     
 #Create SCM directory
 RUN mkdir -p /var/lib/scm \
-    && ln -s /var/lib/scm-data/repositories /var/lib/scm/repositories
+    && ln -s /var/lib/scm-data /var/lib/scm/repositories
     && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig
     && ln -s /var/lib/scm-config/lib /var/lib/scm/lib
     && ln -s /var/lib/scm-config/logs /var/lib/scm/logs
