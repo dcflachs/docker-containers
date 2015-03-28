@@ -43,11 +43,11 @@ RUN mkdir -p /var/lib/scm-config \
     && mkdir -p /var/lib/scm-config/comfig \
     && mkdir -p /var/lib/scm-config/lib \
     && mkdir -p /var/lib/scm-config/logs \
-    && chown -R nobody:nobody /var/lib/scm-config
+    && chown -R nobody:users /var/lib/scm-config
     
 #Create Data Directory
 RUN mkdir -p /var/lib/scm-data \
-    && chown nobody:nobody /var/lib/scm-data
+    && chown nobody:users /var/lib/scm-data
     
 #Create SCM directory
 RUN mkdir -p /var/lib/scm \
@@ -55,7 +55,7 @@ RUN mkdir -p /var/lib/scm \
     && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig
     && ln -s /var/lib/scm-config/lib /var/lib/scm/lib
     && ln -s /var/lib/scm-config/logs /var/lib/scm/logs
-    && chown -R nobody:nobody /var/lib/scm
+    && chown -R nobody:users /var/lib/scm
 
 WORKDIR /var/lib/scm
 USER nobody
