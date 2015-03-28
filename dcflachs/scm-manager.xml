@@ -23,7 +23,12 @@ The easiest way to share and manage your Git, Mercurial and Subversion repositor
 <Data>
 <Volume>
 <HostDir>/mnt/user/appdata/scm-manager</HostDir>
-<ContainerDir>/var/lib/scm</ContainerDir>
+<ContainerDir>/var/lib/scm-config</ContainerDir>
+<Mode>rw</Mode>
+</Volume>
+<Volume>
+<HostDir>/mnt/user/repositories</HostDir>
+<ContainerDir>/var/lib/scm-data</ContainerDir>
 <Mode>rw</Mode>
 </Volume>
 </Data>
