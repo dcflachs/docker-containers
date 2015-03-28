@@ -21,11 +21,11 @@ RUN usermod -d /home nobody
 RUN chown -R nobody:users /home
 
 RUN apt-get update \
-    && apt-get install -qq -y default-jre \  
+    && apt-get install -qq -y openjdk-7-jre \  
     && apt-get autoremove \
     && apt-get clean
 
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle    
+ENV JAVA_HOME /usr/lib/jvm/java-openjdk  
     
 RUN apt-get update \
     && apt-get install -qq -y curl mercurial \  
