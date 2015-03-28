@@ -36,11 +36,11 @@ RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
     && /usr/sbin/useradd --create-home --home-dir /opt/scm-server --shell /bin/bash scm \
     && tar zxf /root/scm-server.tar.gz --strip=1 -C /opt/scm-server \
     && rm -f /root/scm-server.tar.gz \
-    && chown -R nobody:nobody /opt/scm-server
+    && chown -R nobody:users /opt/scm-server
     
 #Create Data Directories
 RUN mkdir -p /var/lib/scm \
-    && chown nobody:nobody /var/lib/scm
+    && chown nobody:users /var/lib/scm
 
 WORKDIR /var/lib/scm
 USER nobody
