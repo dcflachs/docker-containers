@@ -24,7 +24,7 @@ RUN usermod -d /home nobody
 RUN chown -R nobody:users /home
 
 #Install Java, curl and mercurial
-RUN apt-get update \ && apt-get install -qq -y \
+RUN apt-get update && apt-get install -qq -y \
     openjdk-${JAVA_VERSION}-jre \
     curl \
     mercurial \
