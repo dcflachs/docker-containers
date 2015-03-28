@@ -60,7 +60,9 @@ RUN mkdir -p /var/lib/scm \
 WORKDIR /var/lib/scm
 USER nobody
 
-VOLUME /var/lib/scm-config
+VOLUME /var/lib/scm-config/config
+VOLUME /var/lib/scm-config/lib
+VOLUME /var/lib/scm-config/logs
 VOLUME /var/lib/scm-data
 EXPOSE 8080
 
