@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
-<Name>SCM-Manager</Name>
-<Description>
-SCM-Manager 
-The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.
-</Description>
-<Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
-<Repository>dcflachs/scm-manager</Repository>
-<BindTime>true</BindTime>
-<Privileged>false</Privileged>
-<Environment/>
-<Networking>
-<Mode>bridge</Mode>
-<Publish>
-<Port>
-<HostPort>9011</HostPort>
-<ContainerPort>8080</ContainerPort>
-<Protocol>tcp</Protocol>
-</Port>
-</Publish>
-</Networking>
-<Data>
-<Volume>
-<HostDir>/mnt/user/appdata/scm-manager/config</HostDir>
-<ContainerDir>/var/lib/scm-config/config</ContainerDir>
-<Mode>rw</Mode>
-</Volume>
-<Volume>
-<HostDir>/mnt/user/appdata/scm-manager/lib</HostDir>
-<ContainerDir>/var/lib/scm-config/lib</ContainerDir>
-<Mode>rw</Mode>
-</Volume>
-<Volume>
-<HostDir>/mnt/user/appdata/scm-manager/logs</HostDir>
-<ContainerDir>/var/lib/scm-config/logs</ContainerDir>
-<Mode>rw</Mode>
-</Volume>
-<Volume>
-<HostDir>/mnt/user/repositories</HostDir>
-<ContainerDir>/var/lib/scm-data</ContainerDir>
-<Mode>rw</Mode>
-</Volume>
+  <Name>SCM-Manager</Name>
+  <Description>The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.</Description>
+  <Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
+  <Repository>dcflachs/scm-manager</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>9011</HostPort>
+        <ContainerPort>8080</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/scm-manager/config</HostDir>
+      <ContainerDir>/var/lib/scm-config/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+        <HostDir>/mnt/user/appdata/scm-manager/lib</HostDir>
+        <ContainerDir>/var/lib/scm-config/lib</ContainerDir>
+        <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+        <HostDir>/mnt/user/appdata/scm-manager/logs</HostDir>
+        <ContainerDir>/var/lib/scm-config/logs</ContainerDir>
+        <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+        <HostDir>/mnt/user/repositories</HostDir>
+        <ContainerDir>/var/lib/scm-data</ContainerDir>
+        <Mode>rw</Mode>
+    </Volume>
 </Data>
-<Version></Version>
-<WebUI>http://[IP]:[PORT:9011]/scm/</WebUI>
-<Banner>https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9</Banner>
-<Icon>https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2012/Oct/27/scm-manager-logo-117284544-0_avatar.png</Icon>
+  </Data>
+  <Version></Version>
+  <WebUI>http://[IP]:[PORT:9011]/scm/</WebUI>
+  <Banner>https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9</Banner>
+  <Icon>https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2012/Oct/27/scm-manager-logo-117284544-0_avatar.png</Icon>
+  <Support></Support>
+  <Overview></Overview>
+  <Beta>True</Beta>
+  <Category>Network:Web Productivity: Tools:</Category>
+  <ExtraParams></ExtraParams>
 </Container>
