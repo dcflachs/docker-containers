@@ -13,11 +13,12 @@
   <Overview>
     JDownloader is a free, open-source download management tool with a huge community of developers that makes downloading as easy and fast as it should be. Users can start, stop or pause downloads, set bandwith limitations, auto-extract archives and much more. It's an easy-to-extend framework that can save hours of your valuable time every day! [br]
     JDownloader 2 also has a webserver accessible through my.jdownloader.org
+    uses x11rdp1.2
   </Overview>
   <Support></Support>
   <Registry>https://registry.hub.docker.com/u/dcflachs/docker-jdownloader2/</Registry>
   <GitHub>https://github.com/dcflachs/docker-jdownloader2</GitHub>
-  <Repository>dcflachs/docker-jdownloader2</Repository>
+  <Repository>dcflachs/docker-jdownloader2:latest-rdp1.2</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
     <Networking>
