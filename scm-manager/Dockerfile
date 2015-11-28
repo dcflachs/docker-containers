@@ -35,7 +35,7 @@ RUN \
 	oracle-java8-installer \
     && apt-get autoremove \
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/oracle-jdk8-installer \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/oracle-jdk8-installer
     
 #Install scm-server
 RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
