@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:latest
 MAINTAINER dcflachs <dcflachs@gmail.com>
 
 ########################################
@@ -7,8 +7,8 @@ MAINTAINER dcflachs <dcflachs@gmail.com>
 # Set correct environment variables
 ENV HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
 
-ENV SCM_VERSION 1.44
-ENV JAVA_VERSION 7
+ENV SCM_VERSION 1.46
+ENV JAVA_VERSION 8
 ENV SCM_PKG_URL https://maven.scm-manager.org/nexus/content/repositories/releases/sonia/scm/scm-server/${SCM_VERSION}/scm-server-${SCM_VERSION}-app.tar.gz
 ENV SCM_HOME /var/lib/scm
 
