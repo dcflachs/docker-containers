@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
+  <Beta>False</Beta>
   <Name>SCM-Manager</Name>
   <Description>The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.</Description>
   <Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
