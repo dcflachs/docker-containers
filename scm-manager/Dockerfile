@@ -15,7 +15,7 @@ ENV SCM_HOME /var/lib/scm
 ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
 
 # Use baseimage-docker's init system
-#CMD ["/sbin/my_init"]
+CMD ["/sbin/my_init"]
 
 # Configure user nobody to match unRAID's settings
 RUN usermod -u 99 nobody
@@ -29,7 +29,8 @@ RUN apt-get update && apt-get install -qq -y \
     curl \
     mercurial \
     && apt-get autoremove \
-    && apt-get clean
+    && apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
 #Install scm-server
 RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
@@ -52,7 +53,7 @@ RUN mkdir -p /var/lib/scm-data \
 #Create SCM directory
 RUN mkdir -p /var/lib/scm \
     && ln -s /var/lib/scm-data /var/lib/scm/repositories \
-    && ln -s /var/lib/scm-config/comfig /var/lib/scm/comfig \
+    && ln -s /var/lib/scm-config/config /var/lib/scm/config \
     && ln -s /var/lib/scm-config/lib /var/lib/scm/lib \
     && ln -s /var/lib/scm-config/logs /var/lib/scm/logs \
     && chown -R nobody:users /var/lib/scm
