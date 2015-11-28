@@ -13,7 +13,7 @@ ENV SCM_PKG_URL https://maven.scm-manager.org/nexus/content/repositories/release
 ENV SCM_HOME /var/lib/scm
 
 #ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
-#ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
@@ -30,16 +30,12 @@ RUN \
 	add-apt-repository -y ppa:webupd8team/java && \
 	apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
-    oracle-java8-installer \
-	oracle-java8-set-default \
     curl \
     mercurial \
+	oracle-java8-installer \
     && apt-get autoremove \
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /tmp/* \
-	&& rm -rf /var/tmp/* \
-	&& rm -rf /var/cache/oracle-jdk8-installer \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/oracle-jdk8-installer \
     
 #Install scm-server
 RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
