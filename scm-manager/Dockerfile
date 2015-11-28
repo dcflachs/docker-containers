@@ -8,11 +8,12 @@ MAINTAINER dcflachs <dcflachs@gmail.com>
 ENV HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
 
 ENV SCM_VERSION 1.46
-ENV JAVA_VERSION 8
+#ENV JAVA_VERSION 8
 ENV SCM_PKG_URL https://maven.scm-manager.org/nexus/content/repositories/releases/sonia/scm/scm-server/${SCM_VERSION}/scm-server-${SCM_VERSION}-app.tar.gz
 ENV SCM_HOME /var/lib/scm
 
-ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
+#ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
@@ -24,14 +25,20 @@ RUN usermod -d /home nobody
 RUN chown -R nobody:users /home
 
 #Install Java, curl and mercurial
-RUN apt-get update \
+RUN \
+	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+	add-apt-repository -y ppa:webupd8team/java && \
+	apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
-    openjdk-${JAVA_VERSION}-jre \
+    oracle-java8-installer \
     curl \
     mercurial \
     && apt-get autoremove \
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	&& rm -rf /var/lib/apt/lists/* 
+	&& rm -rf /tmp/* 
+	&& rm -rf /var/tmp/* 
+	&& rm -rf /var/cache/oracle-jdk8-installer
     
 #Install scm-server
 RUN curl -Lks "$SCM_PKG_URL" -o /root/scm-server.tar.gz \
