@@ -13,7 +13,7 @@ ENV SCM_PKG_URL https://maven.scm-manager.org/nexus/content/repositories/release
 ENV SCM_HOME /var/lib/scm
 
 #ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+#ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
@@ -31,6 +31,7 @@ RUN \
 	apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
     oracle-java8-installer \
+	oracle-java8-set-default \
     curl \
     mercurial \
     && apt-get autoremove \
