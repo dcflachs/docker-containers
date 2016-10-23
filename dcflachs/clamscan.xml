@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Clamscan</Name>
+  <Repository>dcflachs/clamscan</Repository>
+  <Registry>https://hub.docker.com/r/dcflachs/clamscan/</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Overview>Containerized version of the ClamAV clamscan application for scanning individual directories.&#xD;
+Needs freshclam container to function correctly.&#xD;
+&#xD;
+http://www.clamav.net/</Overview>
+  <Category>Tools: Status:Stable</Category>
+  <WebUI/>
+  <TemplateURL>https://github.com/dcflachs/docker-containers/tree/templates/dcflachs</TemplateURL>
+  <Icon>http://www.clamav.net/assets/clamav-trademark.png</Icon>
+  <ExtraParams/>
+  <DateInstalled>1477252360</DateInstalled>
+  <Description>Containerized version of the ClamAV clamscan application for scanning individual directories.&#xD;
+Needs freshclam container to function correctly.&#xD;
+&#xD;
+http://www.clamav.net/</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/var/lib/clamav</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/malware</ContainerDir>
+      <Mode>ro</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Config Name="Config" Target="/var/lib/clamav" Default="/mnt/user/appdata/clamav" Mode="rw" Description="Location to store virus definitions and configuration settings" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Scan folder" Target="/malware" Default="" Mode="ro" Description="Directory to scan for viruses." Type="Path" Display="always" Required="true" Mask="false"/>
+</Container>

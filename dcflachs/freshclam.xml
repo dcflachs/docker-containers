@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Freshclam</Name>
+  <Repository>dcflachs/freshclam</Repository>
+  <Registry>https://hub.docker.com/r/dcflachs/freshclam/</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Overview>Containerized version of the ClamAV freshclam application.&#xD;
+http://www.clamav.net/&#xD;
+&#xD;
+</Overview>
+  <Category>Tools: Status:Stable</Category>
+  <WebUI/>
+  <TemplateURL>https://github.com/dcflachs/docker-containers/tree/templates/dcflachs</TemplateURL>
+  <Icon>http://www.clamav.net/assets/clamav-trademark.png</Icon>
+  <ExtraParams/>
+  <DateInstalled>1477251686</DateInstalled>
+  <Description>Containerized version of the ClamAV freshclam application.&#xD;
+http://www.clamav.net/&#xD;
+&#xD;
+</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/var/lib/clamav</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Config Name="Config" Target="/var/lib/clamav" Default="/mnt/user/appdata/clamav" Mode="rw" Description="Location to store virus definitions and configuration settings" Type="Path" Display="always" Required="true" Mask="false"/>
+</Container>
