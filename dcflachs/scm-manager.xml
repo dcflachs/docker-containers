@@ -1,13 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Container>
-  <Beta>False</Beta>
+<?xml version="1.0"?>
+<Container version="2">
   <Name>SCM-Manager</Name>
-  <Description>The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.</Description>
-  <Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
   <Repository>dcflachs/scm-manager</Repository>
-  <BindTime>true</BindTime>
+  <Registry>https://registry.hub.docker.com/u/dcflachs/scm-manager/</Registry>
+  <Network>bridge</Network>
   <Privileged>false</Privileged>
-  <Environment/>
+  <Support/>
+  <Overview>The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.</Overview>
+  <Category>Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:9011]/scm/</WebUI>
+  <TemplateURL> docker-containers/dcflachs/scm-manager.xml </TemplateURL>
+  <Icon>https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2012/Oct/27/scm-manager-logo-117284544-0_avatar.png</Icon>
+  <ExtraParams/>
+  <DateInstalled>1479594824</DateInstalled>
+  <Description>The easiest way to share and manage your Git, Mercurial and Subversion repositories over http.</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish>
@@ -20,33 +26,30 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/scm-manager/config</HostDir>
+      <HostDir>/mnt/cache/appdata/scm-manager/config</HostDir>
       <ContainerDir>/var/lib/scm-config/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
-        <HostDir>/mnt/user/appdata/scm-manager/lib</HostDir>
-        <ContainerDir>/var/lib/scm-config/lib</ContainerDir>
-        <Mode>rw</Mode>
+      <HostDir>/mnt/cache/appdata/scm-manager/lib</HostDir>
+      <ContainerDir>/var/lib/scm-config/lib</ContainerDir>
+      <Mode>rw</Mode>
     </Volume>
     <Volume>
-        <HostDir>/mnt/user/appdata/scm-manager/logs</HostDir>
-        <ContainerDir>/var/lib/scm-config/logs</ContainerDir>
-        <Mode>rw</Mode>
+      <HostDir>/mnt/cache/appdata/scm-manager/logs</HostDir>
+      <ContainerDir>/var/lib/scm-config/logs</ContainerDir>
+      <Mode>rw</Mode>
     </Volume>
     <Volume>
-        <HostDir>/mnt/user/repositories</HostDir>
-        <ContainerDir>/var/lib/scm-data</ContainerDir>
-        <Mode>rw</Mode>
+      <HostDir>/mnt/user/SourceCodeRepos/</HostDir>
+      <ContainerDir>/var/lib/scm-data</ContainerDir>
+      <Mode>rw</Mode>
     </Volume>
-</Data>
-<Version></Version>
-<WebUI>http://[IP]:[PORT:9011]/scm/</WebUI>
-<Banner>https://bytebucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg?rev=a7cab787bd165c06f1ff32720a43aed9eeeb54e9</Banner>
-<Icon>https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2012/Oct/27/scm-manager-logo-117284544-0_avatar.png</Icon>
-<Support></Support>
-<Overview></Overview>
-<Beta>True</Beta>
-<Category>Network:Web Productivity: Tools:</Category>
-<ExtraParams></ExtraParams>
+  </Data>
+  <Environment/>
+  <Config Name="Host Port 1" Target="8080" Default="9011" Mode="tcp" Description="Container Port: 8080" Type="Port" Display="always" Required="true" Mask="false">9011</Config>
+  <Config Name="Configuration Data" Target="/var/lib/scm-config/config" Default="/mnt/cache/appdata/scm-manager/config" Mode="rw" Description="Path to the configuration data for scm-manager." Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/scm-manager/config</Config>
+  <Config Name="Configuration Lib" Target="/var/lib/scm-config/lib" Default="/mnt/cache/appdata/scm-manager/lib" Mode="rw" Description="Path to the configuration data for scm-manager." Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/scm-manager/lib</Config>
+  <Config Name="Logs" Target="/var/lib/scm-config/logs" Default="/mnt/cache/appdata/scm-manager/logs" Mode="rw" Description="Path for scm-manager to store logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/scm-manager/logs</Config>
+  <Config Name="Repository Folder" Target="/var/lib/scm-data" Default="/mnt/user/SourceCodeRepos/" Mode="rw" Description="Path to the code repositories for SCM-Manager to manage." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/SourceCodeRepos/</Config>
 </Container>
