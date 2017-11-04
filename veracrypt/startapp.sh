@@ -1,2 +1,2 @@
-umask 000
-/usr/bin/veracrypt
+#!/bin/sh
+exec /usr/bin/veracrypt
