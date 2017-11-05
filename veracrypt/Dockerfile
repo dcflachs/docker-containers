@@ -31,7 +31,7 @@ ENV CLEAN_TMP_DIR 1
 #########################################
 RUN \
 	add-pkg --virtual build-dependencies \
-        curl && \
+        curl ca-certificates && \
 	curl -s https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_8.0/Release.key | apt-key add - && \
 	del-pkg build-dependencies
 
