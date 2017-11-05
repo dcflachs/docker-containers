@@ -48,7 +48,7 @@ COPY startapp.sh /startapp.sh
 COPY Configuration.xml /defaults/Configuration.xml
 
 # Add veracrypt init script
-COPY veracrypt.sh /rootfs/etc/cont-init.d/veracrypt.sh
+COPY veracrypt.sh /rootfs/etc/cont-init.d/90-veracrypt.sh
 
 # Generate and install favicons.
 RUN \
