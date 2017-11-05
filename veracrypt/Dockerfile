@@ -30,11 +30,13 @@ ENV CLEAN_TMP_DIR 1
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
 RUN \
-	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_8.0/ /' > /etc/apt/sources.list.d/veracrypt.list 
+	add-pkg --virtual build-dependencies \
+        curl && \
+	curl -s https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_8.0/Release.key | apt-key add - && \
+	del-pkg build-dependencies
 
 # Install packages needed for app
-RUN \
-	add-pkg veracrypt ntfs-3g
+RUN add-pkg --force-yes veracrypt ntfs-3g
 
 # Copy X app start script to right location
 COPY startapp.sh /startapp.sh
