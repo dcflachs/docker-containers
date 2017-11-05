@@ -5,6 +5,7 @@ set -u # Treat unset variables as an error.
 
 # Make sure required directories exist.
 mkdir -p "$XDG_CONFIG_HOME/VeraCrypt"
+mkdir -p "$XDG_DATA_HOME"
 
 # Install default config if needed.
 if [ ! -f "$XDG_CONFIG_HOME/VeraCrypt/Configuration.xml" ]
