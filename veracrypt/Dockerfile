@@ -41,8 +41,19 @@ RUN \
 # Install packages needed for app
 RUN add-pkg --force-yes veracrypt ntfs-3g
 
-# Copy X app start script to right location
+# Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
+
+# Copy default configuration file to correct location
+COPY Configuration.xml /defaults/Configuration.xml
+
+# Add veracrypt init script
+COPY veracrypt.sh /rootfs/etc/cont-init.d/veracrypt.sh
+
+# Generate and install favicons.
+RUN \
+    APP_ICON_URL=http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png && \
+    install_app_icon.sh "$APP_ICON_URL"
 
 #########################################
 ##         EXPORTS AND VOLUMES         ##
