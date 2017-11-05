@@ -41,6 +41,9 @@ RUN \
 # Install packages needed for app
 RUN add-pkg --force-yes veracrypt ntfs-3g
 
+# Add user to sudoers list
+RUN echo "$USER_ID ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
 
