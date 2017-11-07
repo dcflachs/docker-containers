@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/veracrypt
+exec env HOME=/config s6-setuidgid $USER_ID:$GROUP_ID /usr/bin/veracrypt
