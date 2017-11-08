@@ -13,6 +13,9 @@ then
   cp -v /defaults/Configuration.xml "$XDG_CONFIG_HOME/VeraCrypt"
 fi
 
+#Add the user to the sudo group
+adduser $USER_ID sudo
+
 # Adjust ownership of /config.
 chown -R $USER_ID:$GROUP_ID /config
 # Adjust ownership of /disks
