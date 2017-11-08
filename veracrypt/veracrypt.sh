@@ -1,5 +1,8 @@
 #!/usr/bin/with-contenv sh
 
+#Add the user veracrypt_app
+useradd -u $USER_ID -g $GROUP_ID -o veracrypt_app
+
 set -e # Exit immediately if a command exits with a non-zero status.
 set -u # Treat unset variables as an error.
 
@@ -12,10 +15,6 @@ if [ ! -f "$XDG_CONFIG_HOME/VeraCrypt/Configuration.xml" ]
 then
   cp -v /defaults/Configuration.xml "$XDG_CONFIG_HOME/VeraCrypt"
 fi
-
-#Add the user to the sudo group
-grep -q -F "Runas_Alias VERACRYPT_USER = #$USER_ID" /etc/sudoers || echo "Runas_Alias VERACRYPT_USER = #$USER_ID" >> /etc/sudoers
-grep -q -F "VERACRYPT_USER ALL=(ALL) NOPASSWD: ALL" /etc/sudoers || echo "VERACRYPT_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Adjust ownership of /config.
 chown -R $USER_ID:$GROUP_ID /config

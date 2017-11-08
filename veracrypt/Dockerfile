@@ -50,6 +50,9 @@ COPY Configuration.xml /defaults/Configuration.xml
 # Add veracrypt init script
 COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
+# Add veracrypt sudoers file
+COPY veracrypt_sudoers /etc/sudoers.d/veracrypt
+
 # Generate and install favicons.
 RUN \
     APP_ICON_URL=http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png && \
