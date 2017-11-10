@@ -4,7 +4,7 @@ This container is an experimental packaged version of the Veracrypt GUI applicat
 
 ## WARNING: This image is experimental and should not be considered secure. This image requires elevated privileges.
 
-This image is based on [jlesage/baseimage-gui:debian-8](https://hub.docker.com/r/jlesage/baseimage-gui/)
+This image is based on [jlesage/baseimage-gui:ubuntu-16.04](https://hub.docker.com/r/jlesage/baseimage-gui/)
 
 ## Usage
 
