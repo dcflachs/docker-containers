@@ -1,5 +1,5 @@
 # Pull base image.
-FROM jlesage/baseimage-gui:ubuntu-16.04
+FROM jlesage/baseimage-gui:debian-8
 
 MAINTAINER dcflachs
 
@@ -29,7 +29,14 @@ ENV CLEAN_TMP_DIR 1
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
-RUN add-apt-repository ppa:unit193/encryption
+RUN \
+	add-pkg --virtual build-dependencies \
+        wget ca-certificates && \
+	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_8.0/ /' > /etc/apt/sources.list.d/veracrypt.list && \
+	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_8.0/Release.key -O Release.key && \
+	apt-key --keyring /etc/apt/trusted.gpg.d/veracrypt.gpg add - < Release.key && \
+	rm Release.key && \
+	del-pkg build-dependencies
 
 # Install packages needed for app
 RUN add-pkg --force-yes veracrypt ntfs-3g sudo
@@ -59,3 +66,4 @@ RUN \
 # Place whatever volumes and ports you want exposed here:
 VOLUME ["/mnt/containers"]
 VOLUME ["/mnt/disks"]
+
