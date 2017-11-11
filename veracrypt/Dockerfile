@@ -29,11 +29,7 @@ ENV CLEAN_TMP_DIR 1
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
-RUN \
-	add-pkg --virtual build-dependencies \
-        software-properties-common && \
-	add-apt-repository ppa:unit193/encryption && \
-	del-pkg build-dependencies
+RUN add-apt-repository ppa:unit193/encryption
 
 # Install packages needed for app
 RUN add-pkg --force-yes veracrypt ntfs-3g sudo
