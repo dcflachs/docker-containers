@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv sh
 
 #Add the user veracrypt_app
-useradd -u $USER_ID -g $GROUP_ID -o veracrypt_app
+usermod -u $USER_ID -G $GROUP_ID -o veracrypt_user
 
 set -e # Exit immediately if a command exits with a non-zero status.
 set -u # Treat unset variables as an error.

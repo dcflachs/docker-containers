@@ -1,1 +1,1 @@
-veracrypt_app ALL=(ALL) NOPASSWD: ALL
+veracrypt_user ALL=(root) NOPASSWD: /usr/bin/veracrypt
