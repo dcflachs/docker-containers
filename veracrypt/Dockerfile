@@ -52,7 +52,7 @@ COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
 # Add veracrypt sudoers file
 COPY veracrypt_sudoers /etc/sudoers.d/veracrypt
-RUN sed-patch 's/veracrypt_user/$APP_USER/' /etc/sudoers.d/veracrypt
+RUN sed-patch "s/veracrypt_user/$APP_USER/" /etc/sudoers.d/veracrypt
 RUN chmod 440 /etc/sudoers.d/veracrypt
 
 # Generate and install favicons.
