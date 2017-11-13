@@ -1,2 +1,3 @@
-umask 000
-/usr/bin/veracrypt
+#!/bin/sh
+export HOME=/config
+exec env /usr/bin/veracrypt
