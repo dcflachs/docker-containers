@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Veracrypt-RO</Name>
+  <Repository>dcflachs/veracrypt-gui</Repository>
+  <Registry>https://hub.docker.com/r/dcflachs/veracrypt-gui/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Privileged>true</Privileged>
+  <Support>https://hub.docker.com/r/dcflachs/veracrypt-gui/</Support>
+  <Project>www.veracrypt.fr</Project>
+  <Overview>Experimental VeraCrypt GUI container.</Overview>
+  <Category>Tools: Status:Beta</Category>
+  <WebUI>http://[IP]:[PORT:5800]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/dcflachs/docker-containers/templates/dcflachs/veracrypt-gui.xml</TemplateURL>
+  <Icon>http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png</Icon>
+  <ExtraParams>--log-opt max-size=50m --log-opt max-file=1</ExtraParams>
+  <PostArgs/>
+  <DateInstalled>1518281890</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <DonateImg/>
+  <MinVer>6.4.0</MinVer>
+  <Description>Experimental VeraCrypt GUI container.</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort/>
+        <ContainerPort>5800</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/mnt/containers/</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/mnt/disks</ContainerDir>
+      <Mode>rw,shared</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>1280</Value>
+      <Name>DISPLAY_WIDTH</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>720</Value>
+      <Name>DISPLAY_HEIGHT</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Config Name="AppData" Target="/config" Default="/mnt/user/appdata/veracrypt" Mode="rw" Description="App Data Folder" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Containers" Target="/mnt/containers/" Default="/mnt/user/containers/" Mode="rw" Description="Directory containing encrypted containers. " Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Width" Target="DISPLAY_WIDTH" Default="1280" Mode="" Description="Container Variable: DISPLAY_WIDTH" Type="Variable" Display="always" Required="false" Mask="false">1280</Config>
+  <Config Name="Height" Target="DISPLAY_HEIGHT" Default="720" Mode="" Description="Container Variable: DISPLAY_HEIGHT" Type="Variable" Display="always" Required="false" Mask="false">720</Config>
+  <Config Name="Web GUI" Target="5800" Default="5800" Mode="tcp" Description="Container Port: 5800" Type="Port" Display="always" Required="true" Mask="false"/>
+  <Config Name="Disks" Target="/mnt/disks" Default="/mnt/disks/veracrypt/" Mode="rw,shared" Description="Directory in which to mount veracrypt disks." Type="Path" Display="always" Required="true" Mask="false"/>
+</Container>
