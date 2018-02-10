@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>Veracrypt-RO</Name>
+  <Name>VeracryptGui</Name>
   <Repository>dcflachs/veracrypt-gui</Repository>
   <Registry>https://hub.docker.com/r/dcflachs/veracrypt-gui/</Registry>
   <Network>bridge</Network>
