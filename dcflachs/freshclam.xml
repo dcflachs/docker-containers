@@ -5,14 +5,12 @@
   <Registry>https://hub.docker.com/r/dcflachs/freshclam/</Registry>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
-  <Support/>
-  <Overview>Containerized version of the ClamAV freshclam application.&#xD;
-http://www.clamav.net/&#xD;
-&#xD;
-</Overview>
+  <Support>https://hub.docker.com/r/dcflachs/freshclam/</Support>
+  <Project>https://www.clamav.net/</Project>
+  <Overview>Containerized version of the ClamAV freshclam application.&#xD;</Overview>
   <Category>Tools: Status:Stable</Category>
   <WebUI/>
-  <TemplateURL>https://github.com/dcflachs/docker-containers/tree/templates/dcflachs</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/dcflachs/docker-containers/templates/dcflachs/freshclam.xml</TemplateURL>
   <Icon>http://www.clamav.net/assets/clamav-trademark.png</Icon>
   <ExtraParams/>
   <DateInstalled>1477251686</DateInstalled>
@@ -30,7 +28,13 @@ http://www.clamav.net/&#xD;
       <ContainerDir>/var/lib/clamav</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
+    <Volume>
+      <HostDir>/etc/localtime</HostDir>
+      <ContainerDir>/etc/localtime</ContainerDir>
+      <Mode>ro</Mode>
+    </Volume>
   </Data>
   <Environment/>
   <Config Name="Config" Target="/var/lib/clamav" Default="/mnt/user/appdata/clamav" Mode="rw" Description="Location to store virus definitions and configuration settings" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Timezone" Target="/etc/localtime" Default="/etc/localtime" Mode="ro" Description="Container Path: /etc/localtime" Type="Path" Display="always" Required="false" Mask="false"/>
 </Container>
