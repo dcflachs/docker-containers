@@ -4,6 +4,11 @@ VOLUME /malware
 
 WORKDIR /
 
-ENTRYPOINT ["/usr/bin/clamscan", "--max-filesize=4000M", "-r"]
+COPY scan.sh /scan.sh
+RUN chmod +x /scan.sh
+
+RUN apk add --no-cache curl
+
+ENTRYPOINT ["scan.sh", "--max-filesize=4000M", "-r"]
 
 CMD ["/malware"]
