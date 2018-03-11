@@ -1,7 +1,7 @@
 #!/bin/bash
 LOGFILE="/var/log/clamav/clamav-$(date +'%Y-%m-%d').log";
 
-/usr/bin/clamscan "$@" | tee "$LOGFILE";
+/usr/bin/clamscan "$@" 2>&1 | tee "$LOGFILE";
 
 # get the value of "Infected lines"
 MALWARE=$(tail "$LOGFILE"|grep Infected|cut -d" " -f3);
