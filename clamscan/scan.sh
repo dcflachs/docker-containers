@@ -6,7 +6,7 @@ LOGFILE="/var/log/clamav/clamav-$(date +'%Y-%m-%d').log";
 # get the value of "Infected lines"
 MALWARE=$(tail "$LOGFILE"|grep Infected|cut -d" " -f3);
 
-if [ -z "$PUSHOVER_TOKEN" ] && [ -z "$PUSHOVER_TOKEN" ];then
+if [ -z "$PUSHOVER_TOKEN" ] && [ -z "$PUSHOVER_USER" ];then
 	# if the value is not equal to zero, send an email with the log file attached
 	if [ "$MALWARE" -ne "0" ];then
 		if [ -z "$INSTANCE_NAME" ];then
