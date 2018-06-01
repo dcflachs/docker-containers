@@ -6,6 +6,10 @@ ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/ad
 ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/del-pkg /usr/local/bin/
 ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/sed-patch /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/add-pkg
+RUN chmod +x /usr/local/bin/del-pkg
+RUN chmod +x /usr/local/bin/sed-patch
+
 RUN \
 	add-pkg --virtual build-dependencies \
 		ca-certificates curl unzip && \
