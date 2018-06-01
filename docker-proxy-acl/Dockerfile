@@ -14,11 +14,11 @@ RUN \
 	add-pkg --virtual build-dependencies \
 		ca-certificates curl unzip && \
 	curl -LJO https://github.com/dcflachs/docker-proxy-acl/archive/master.zip && \
-	unzip master.zip -d /master && \
+	unzip docker-proxy-acl-master.zip -d /master && \
 	cp /master/docker-proxy-acl.go /go/src/app && \
 	cp -r /master/proxy/ /go/src/app/proxy && \
 	cp -r /master/vendor/ /go/src/app/vendor && \
-	rm master.zip && \
+	rm docker-proxy-acl-master.zip && \
 	rm -R /master && \
 	del-pkg build-dependencies
 
