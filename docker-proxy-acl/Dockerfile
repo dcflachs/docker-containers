@@ -1,4 +1,25 @@
-FROM kmlucy/docker-proxy-acl
+FROM golang:1-alpine3.5
 MAINTAINER dcflachs
 
-CMD (rm -f /tmp/docker-proxy-acl/docker.sock || rmdir /tmp/docker-proxy-acl/docker.sock) && go run docker-proxy-acl.go $OPTIONS
+# Add helpers from jlesage/docker-baseimage
+ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/add-pkg /usr/local/bin/
+ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/del-pkg /usr/local/bin/
+ADD https://raw.githubusercontent.com/jlesage/docker-baseimage/master/helpers/sed-patch /usr/local/bin/
+
+RUN \
+	add-pkg --virtual build-dependencies \
+		ca-certificates curl unzip && \
+	curl -LJO https://github.com/dcflachs/docker-proxy-acl/archive/master.zip && \
+	unzip master.zip -d /master && \
+	cp /master/docker-proxy-acl.go /go/src/app && \
+	cp -r /master/proxy/ /go/src/app/proxy && \
+	cp -r /master/vendor/ /go/src/app/vendor && \
+	rm master.zip && \
+	rm -R /master && \
+	del-pkg build-dependencies
+
+WORKDIR /go/src/app
+
+ENV OPTIONS="-a containers"
+
+CMD (rm -f /tmp/docker-proxy-acl/docker.sock || rmdir /tmp/docker-proxy-acl/docker.sock) ; go run docker-proxy-acl.go $OPTIONS
