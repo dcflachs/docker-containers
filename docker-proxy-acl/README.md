@@ -1,5 +1,5 @@
 # Docker Proxy ACL
-[VeraCrypt](https://github.com/titpetric/docker-proxy-acl) is a docker unix socket proxy which restricts endpoint usage to allowed sections.
+[Docker Proxy ACL](https://github.com/titpetric/docker-proxy-acl) is a docker unix socket proxy which restricts endpoint usage to allowed sections.
 
 This image is based on [kmlucy/docker-proxy-acl](https://hub.docker.com/r/kmlucy/docker-proxy-acl/)
 
