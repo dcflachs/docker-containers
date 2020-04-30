@@ -1,5 +1,4 @@
-# Pull base image.
-FROM jlesage/baseimage-gui:debian-8
+FROM jlesage/baseimage-gui:debian-9
 
 MAINTAINER dcflachs
 
@@ -32,8 +31,8 @@ ENV CLEAN_TMP_DIR 1
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates && \
-	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_8.0/ /' > /etc/apt/sources.list.d/veracrypt.list && \
-	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_8.0/Release.key -O Release.key && \
+	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_9.0/ /' > /etc/apt/sources.list.d/home:stevenpusser:veracrypt.list && \
+	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_9.0/Release.key -O Release.key && \
 	apt-key --keyring /etc/apt/trusted.gpg.d/veracrypt.gpg add - < Release.key && \
 	rm Release.key && \
 	del-pkg build-dependencies
