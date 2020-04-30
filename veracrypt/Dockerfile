@@ -30,7 +30,7 @@ ENV CLEAN_TMP_DIR 1
 #########################################
 RUN \
 	add-pkg --virtual build-dependencies \
-        wget ca-certificates && \
+        wget ca-certificates gnupg && \
 	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_9.0/ /' > /etc/apt/sources.list.d/home:stevenpusser:veracrypt.list && \
 	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_9.0/Release.key -O Release.key && \
 	apt-key --keyring /etc/apt/trusted.gpg.d/veracrypt.gpg add - < Release.key && \
