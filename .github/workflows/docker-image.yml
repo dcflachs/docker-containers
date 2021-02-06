@@ -27,10 +27,8 @@ jobs:
       - name: Get Git SHA
         id: sha
         shell: bash
-        run: |
-          cd ./app
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          cd ..
+        working-directory: ./app
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
         
       - name: Get current date
         id: date
