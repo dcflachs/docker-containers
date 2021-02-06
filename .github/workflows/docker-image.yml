@@ -61,7 +61,7 @@ jobs:
           then
             echo "::set-output name=tag::latest"
           else
-            echo "::set-output name=tag::beta)"
+            echo "::set-output name=tag::beta"
           fi
       
       - name: Build and push
