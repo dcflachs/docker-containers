@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
       - name: Checkout Build Repo
+        uses: actions/checkout@v2  
         with:
           path: ./build
         
-      - uses: actions/checkout@v2
       - name: Checkout App Repo
+        uses: actions/checkout@v2
         with:
           repository: dcflachs/docker-proxy-acl
           path: ./app  
