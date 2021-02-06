@@ -1,4 +1,4 @@
-FROM golang:1-alpine3.13
+FROM golang:1.12-alpine3.11
 MAINTAINER dcflachs
 
 # Add helpers from jlesage/docker-baseimage
