@@ -1,4 +1,4 @@
-name: OpenRBG CI
+name: OpenRGB CI
 
 on:
   schedule:
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
         
 jobs:
-  build-openrbg:
+  build-openrgb:
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +47,7 @@ jobs:
       
       - name: Docker Repo
         id: repo
-        run: echo "::set-output name=repo::dcflachs/openrbg"
+        run: echo "::set-output name=repo::dcflachs/openrgb"
       
       - name: Set Main Tag
         id: main_tag
@@ -64,7 +64,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./build/openrbg
+          context: ./build/openrgb
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
