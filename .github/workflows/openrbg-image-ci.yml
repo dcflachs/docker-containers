@@ -20,6 +20,11 @@ jobs:
         with:
           path: ./build
                
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
@@ -53,7 +58,7 @@ jobs:
         id: main_tag
         shell: bash
         run: |
-          if [[ "${{ steps.sha.outputs.branch }}" == "master" ]]
+          if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" ]]
           then
             echo "::set-output name=tag::latest"
           else
