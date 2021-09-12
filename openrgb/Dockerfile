@@ -23,6 +23,8 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
+ARG GIT_TAG release_0.2
+
 # Generate and install favicons.
 RUN \
     APP_ICON_URL=https://assets.gitlab-static.net/uploads/-/system/project/avatar/10582521/OpenRGB.png && \
@@ -41,6 +43,7 @@ RUN \
 		git build-essential qtcreator make ca-certificates  && \
 	git clone https://gitlab.com/CalcProgrammer1/OpenRGB && \
 	cd OpenRGB && \
+	git checkout $GIT_TAG && \
 	qmake OpenRGB.pro && \
 	make -j8 && \
 	del-pkg build-dependencies
