@@ -23,7 +23,7 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
-ARG GIT_TAG release_0.2
+ARG GIT_TAG=release_0.2
 
 # Generate and install favicons.
 RUN \
