@@ -1,4 +1,4 @@
-name: OpenRGB CI
+name: Veracrypt CI
 
 on:
   schedule:
