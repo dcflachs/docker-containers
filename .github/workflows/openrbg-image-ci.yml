@@ -1,4 +1,4 @@
-name: docker-proxy-acl CI
+name: OpenRBG CI
 
 on:
   schedule:
@@ -11,8 +11,7 @@ on:
   workflow_dispatch:
         
 jobs:
-
-  build-docker-proxy-acl:
+  build-openrbg:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,21 +19,7 @@ jobs:
         uses: actions/checkout@v2  
         with:
           path: ./build
-        
-      - name: Checkout App Repo
-        uses: actions/checkout@v2
-        with:
-          repository: dcflachs/docker-proxy-acl
-          path: ./app  
-        
-      - name: Get Git SHA
-        id: sha
-        shell: bash
-        working-directory: ./app
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-        
+               
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
@@ -46,6 +31,14 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@master
      
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
       - name: Login to DockerHub 
         uses: docker/login-action@v1
         with:
@@ -54,7 +47,7 @@ jobs:
       
       - name: Docker Repo
         id: repo
-        run: echo "::set-output name=repo::dcflachs/docker-proxy-acl"
+        run: echo "::set-output name=repo::dcflachs/openrbg"
       
       - name: Set Main Tag
         id: main_tag
@@ -71,13 +64,11 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./build/docker-proxy-acl
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7
+          context: ./build/openrbg
+          platforms: linux/amd64
           push: true
-          labels: |
-            `org.opencontainers.image.revision=${{ steps.sha.outputs.sha_short }}`
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
           tags: |
             ${{ steps.repo.outputs.repo }}:${{ steps.main_tag.outputs.tag }}
             ${{ steps.repo.outputs.repo }}:nightly-${{ steps.date.outputs.date }}
-            ${{ steps.repo.outputs.repo }}:sha-${{ steps.sha.outputs.sha_short }}
-      
