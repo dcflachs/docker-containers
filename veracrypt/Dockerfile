@@ -1,4 +1,6 @@
-FROM jlesage/baseimage-gui:debian-10
+ARG DEBIAN_VERSION debian-10
+
+FROM jlesage/baseimage-gui:$DEBIAN_VERSION
 
 MAINTAINER dcflachs
 
@@ -25,20 +27,20 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
+ARG VERACRYPT_VERSION 1.24-update7
+
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_10.0/ /' > /etc/apt/sources.list.d/home:stevenpusser:veracrypt.list && \
-	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_10.0/Release.key -O Release.key && \
-	apt-key --keyring /etc/apt/trusted.gpg.d/veracrypt.gpg add - < Release.key && \
-	rm Release.key && \
+	wget -nv https://launchpad.net/veracrypt/trunk/$VERACRYPT_VERSION/+download/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
+	add-pkg veracrypt.deb && \
 	del-pkg build-dependencies
 
 # Install packages needed for app
-RUN add-pkg --force-yes veracrypt ntfs-3g sudo
+RUN add-pkg --force-yes ntfs-3g sudo
 
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
