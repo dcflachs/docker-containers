@@ -1,5 +1,4 @@
 FROM jlesage/baseimage-gui:debian-10
-ARG DEBIAN_VERSION=debian-10
 
 MAINTAINER dcflachs
 
@@ -26,15 +25,13 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
-ARG VERACRYPT_VERSION=1.24-update7
-
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	wget -nv https://launchpad.net/veracrypt/trunk/$VERACRYPT_VERSION/+download/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
+	wget -nv https://launchpad.net/veracrypt/trunk/1.24-Update7/+download/veracrypt-1.24-update7-Debian-10-amd64.deb -O veracrypt.deb && \
 	add-pkg veracrypt.deb && \
 	del-pkg build-dependencies
 
