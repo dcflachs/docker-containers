@@ -1,6 +1,5 @@
+FROM jlesage/baseimage-gui:debian-10
 ARG DEBIAN_VERSION=debian-10
-
-FROM jlesage/baseimage-gui:${DEBIAN_VERSION}
 
 MAINTAINER dcflachs
 
