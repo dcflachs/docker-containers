@@ -35,7 +35,7 @@ ARG VERACRYPT_VERSION=1.24-update7
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	wget -nv https://launchpad.net/veracrypt/trunk/${VERACRYPT_VERSION}/+download/veracrypt-${VERACRYPT_VERSION}-${DEBIAN_VERSION}-amd64.deb -O veracrypt.deb && \
+	wget -nv https://launchpad.net/veracrypt/trunk/$VERACRYPT_VERSION/+download/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
 	add-pkg veracrypt.deb && \
 	del-pkg build-dependencies
 
