@@ -35,11 +35,9 @@ RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
 	wget -nv https://launchpad.net/veracrypt/trunk/1.24-update7/+download/veracrypt-1.24-Update7-Debian-10-amd64.deb -O veracrypt.deb && \
+    dpkg -i veracrypt.deb && \
+    rm veracrypt.deb && \
 	del-pkg build-dependencies
-
-RUN dpkg -i veracrypt.deb
-
-RUN chmod u+s /usr/bin/veracrypt
 
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
@@ -51,7 +49,7 @@ COPY Configuration.xml /defaults/Configuration.xml
 COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
 # Add veracrypt sudoers file
-RUN echo "$APP_USER ALL=(root) NOPASSWD:/usr/bin/veracrypt" > /etc/sudoers.d/veracrypt
+RUN echo "$USER_ID ALL=(root) NOPASSWD:/usr/bin/veracrypt" > /etc/sudoers.d/veracrypt
 RUN chmod 440 /etc/sudoers.d/veracrypt
 
 # Generate and install favicons.
