@@ -49,7 +49,7 @@ COPY Configuration.xml /defaults/Configuration.xml
 COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
 # Add veracrypt sudoers file
-RUN echo "$USER_ID ALL=(root) NOPASSWD:/usr/bin/veracrypt" > /etc/sudoers.d/veracrypt
+RUN echo "$APP_USER ALL=(root) NOPASSWD:/usr/bin/veracrypt" > /etc/sudoers.d/veracrypt
 RUN chmod 440 /etc/sudoers.d/veracrypt
 
 # Generate and install favicons.
