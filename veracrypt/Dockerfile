@@ -39,7 +39,7 @@ RUN \
 
 RUN dpkg -i veracrypt.deb
 
-RUN sudo u+s /usr/bin/veracrypt
+RUN chmod u+s /usr/bin/veracrypt
 
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
