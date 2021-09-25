@@ -25,6 +25,9 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
+# Install packages needed for app
+RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup
+
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
@@ -35,9 +38,6 @@ RUN \
 	del-pkg build-dependencies
 
 RUN dpkg -i veracrypt.deb
-
-# Install packages needed for app
-RUN add-pkg --force-yes ntfs-3g sudo
 
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
