@@ -5,5 +5,6 @@ set -u # Treat unset variables as an error.
 
 echo "$APP_USER ALL=(root) NOPASSWD: /usr/bin/veracrypt, /usr/bin/uptime" > /etc/sudoers.d/veracrypt
 echo "Defaults:$APP_USER !requiretty" > /etc/sudoers.d/veracrypt
+echo "Default logfile = /var/log/file_name" > /etc/sudoers.d/veracrypt
 
 chmod 440 /etc/sudoers.d/veracrypt
