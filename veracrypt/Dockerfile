@@ -26,7 +26,7 @@ ENV SECURE_CONNECTION 1
 ENV CLEAN_TMP_DIR 1
 
 # Install packages needed for app
-RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procps
+RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procps nano
 
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
@@ -50,6 +50,10 @@ COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
 # Add veracrypt sudoers script
 COPY sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
+
+COPY setuplog.sh /etc/cont-init.d/01-setup-log.sh
+
+COPY log.sh /etc/services.d/log.sh
 
 # Generate and install favicons.
 RUN \
