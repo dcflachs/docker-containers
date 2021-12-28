@@ -34,7 +34,7 @@ RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procp
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	wget -nv https://launchpad.net/veracrypt/trunk/1.24-update7/+download/veracrypt-1.24-Update7-Debian-10-amd64.deb -O veracrypt.deb && \
+	wget -nv https://launchpad.net/veracrypt/trunk/1.25.4/+download/veracrypt-1.25.4-Debian-10-amd64.deb -O veracrypt.deb && \
     dpkg -i veracrypt.deb && \
     rm veracrypt.deb && \
 	del-pkg build-dependencies
