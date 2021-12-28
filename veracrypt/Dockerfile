@@ -51,6 +51,23 @@ COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 # Add veracrypt sudoers script
 COPY sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
 
+# Fix PAM configuration
+RUN sed-patch \
+    's/account       [success=1 new_authtok_reqd=done default=ignore]        pam_unix.so/account       [default=1]                     pam_permit.so/' \ 
+    /etc/pam.d/common-account
+RUN sed-patch \
+    's/auth  [success=1 default=ignore]      pam_unix.so nullok_secure/auth  [default=1]                     pam_permit.so/' \
+    /etc/pam.d/common-auth
+RUN sed-patch \
+    's/password      [success=1 default=ignore]      pam_unix.so obscure sha512/password      [default=1]                     pam_permit.so/' \
+    /etc/pam.d/common-password
+RUN echo \
+    'session       required        pam_unix.so' \
+    >> /etc/pam.d/common-session
+RUN echo \
+    'session       required        pam_unix.so' \
+    >> /etc/pam.d/common-session-noninteractive
+
 # Generate and install favicons.
 RUN \
     APP_ICON_URL=http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png && \
