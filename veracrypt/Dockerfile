@@ -52,12 +52,13 @@ COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 COPY sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
 
 # Fix PAM configuration
-RUN \
-    add-pkg --virtual deps \
-        debconf-utils && \
-    echo libpam-runtime libpam-runtime/profiles multiselect systemd | debconf-set-selections && \
-    DEBIAN_FRONTEND=noninteractive pam-auth-update --package && \
-    del-pkg deps
+RUN DEBIAN_FRONTEND=noninteractive pam-auth-update --package --remove unix
+# RUN \
+#     add-pkg --virtual deps \
+#         debconf-utils && \
+#     echo libpam-runtime libpam-runtime/profiles multiselect systemd | debconf-set-selections && \
+#     DEBIAN_FRONTEND=noninteractive pam-auth-update --package && \
+#     del-pkg deps
 
 # Generate and install favicons.
 RUN \
