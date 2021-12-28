@@ -1,5 +1,4 @@
-# Pull base image.
-FROM jlesage/baseimage-gui:debian-8
+FROM jlesage/baseimage-gui:debian-10
 
 MAINTAINER dcflachs
 
@@ -26,20 +25,19 @@ ENV SECURE_CONNECTION 1
 # Clean tmp on startup
 ENV CLEAN_TMP_DIR 1
 
+# Install packages needed for app
+RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procps libayatana-appindicator3-1 nano
+
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
 RUN \
 	add-pkg --virtual build-dependencies \
-        wget ca-certificates && \
-	echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser:/veracrypt/Debian_8.0/ /' > /etc/apt/sources.list.d/veracrypt.list && \
-	wget -nv https://download.opensuse.org/repositories/home:stevenpusser:veracrypt/Debian_8.0/Release.key -O Release.key && \
-	apt-key --keyring /etc/apt/trusted.gpg.d/veracrypt.gpg add - < Release.key && \
-	rm Release.key && \
+        wget ca-certificates gnupg && \
+	wget -nv https://launchpad.net/veracrypt/trunk/1.25.4/+download/veracrypt-1.25.4-Debian-10-amd64.deb -O veracrypt.deb && \
+    dpkg -i veracrypt.deb && \
+    rm veracrypt.deb && \
 	del-pkg build-dependencies
-
-# Install packages needed for app
-RUN add-pkg --force-yes veracrypt ntfs-3g sudo
 
 # Copy X app start script to correct location
 COPY startapp.sh /startapp.sh
@@ -50,9 +48,17 @@ COPY Configuration.xml /defaults/Configuration.xml
 # Add veracrypt init script
 COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
-# Add veracrypt sudoers file
-RUN echo "$APP_USER ALL=(root) NOPASSWD:/usr/bin/veracrypt" > /etc/sudoers.d/veracrypt
-RUN chmod 440 /etc/sudoers.d/veracrypt
+# Add veracrypt sudoers script
+COPY sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
+
+# Fix PAM configuration
+RUN DEBIAN_FRONTEND=noninteractive pam-auth-update --package --remove unix
+# RUN \
+#     add-pkg --virtual deps \
+#         debconf-utils && \
+#     echo libpam-runtime libpam-runtime/profiles multiselect systemd | debconf-set-selections && \
+#     DEBIAN_FRONTEND=noninteractive pam-auth-update --package && \
+#     del-pkg deps
 
 # Generate and install favicons.
 RUN \
