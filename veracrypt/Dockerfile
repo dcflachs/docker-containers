@@ -41,7 +41,8 @@ RUN \
         libayatana-appindicator3-1 \
         nano \
         libpcsclite1 \
-        pcscd
+        pcscd \
+        btrfs-progs
 
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
