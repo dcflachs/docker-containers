@@ -40,7 +40,8 @@ RUN \
         procps \
         libayatana-appindicator3-1 \
         nano \
-        libpcsclite1
+        libpcsclite1 \
+        pcscd
 
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
