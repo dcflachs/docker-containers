@@ -30,7 +30,17 @@ ENV SECURE_CONNECTION 1
 ENV CLEAN_TMP_DIR 1
 
 # Install packages needed for app
-RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procps libayatana-appindicator3-1 nano
+RUN \
+    add-pkg --force-yes \ 
+        ntfs-3g \
+        sudo \
+        libfuse2 \
+        dmsetup \
+        libwxgtk3.0-gtk3-0v5 \
+        procps \
+        libayatana-appindicator3-1 \
+        nano \
+        libpcsclite1
 
 #########################################
 ##    REPOSITORIES AND DEPENDENCIES    ##
