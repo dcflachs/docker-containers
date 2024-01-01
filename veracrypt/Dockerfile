@@ -38,7 +38,7 @@ RUN add-pkg --force-yes ntfs-3g sudo libfuse2 dmsetup libwxgtk3.0-gtk3-0v5 procp
 RUN \
 	add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	wget -nv https://launchpad.net/veracrypt/trunk/${VERACRYPT_VERSION}/+download/veracrypt-${VERACRYPT_VERSION}-${DEBIAN_VERSION}-amd64.deb -O veracrypt.deb && \
+	wget -nv https://launchpad.net/veracrypt/trunk/$VERACRYPT_VERSION/+download/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
     dpkg -i veracrypt.deb && \
     rm veracrypt.deb && \
 	del-pkg build-dependencies
