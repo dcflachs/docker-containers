@@ -78,7 +78,7 @@ RUN DEBIAN_FRONTEND=noninteractive pam-auth-update --package --remove unix
 
 # Generate and install favicons.
 RUN \
-    APP_ICON_URL=http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png && \
+    APP_ICON_URL=https://raw.githubusercontent.com/veracrypt/VeraCrypt/master/src/Common/VeraCrypt.ico && \
     install_app_icon.sh "$APP_ICON_URL"
 
 #########################################
