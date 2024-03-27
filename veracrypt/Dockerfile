@@ -78,7 +78,7 @@ RUN DEBIAN_FRONTEND=noninteractive pam-auth-update --package --remove unix
 
 # Generate and install favicons.
 RUN \
-    APP_ICON_URL=https://github.com/dcflachs/docker-containers/blob/master/veracrypt/veracrypt.png && \
+    APP_ICON_URL=https://raw.githubusercontent.com/dcflachs/docker-containers/master/veracrypt/veracrypt.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
 #########################################
