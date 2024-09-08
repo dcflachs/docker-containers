@@ -1,4 +1,4 @@
-ARG DEBIAN_VERSION=debian-10
+ARG DEBIAN_VERSION=debian-10-v4
 FROM jlesage/baseimage-gui:${DEBIAN_VERSION}
 
 ARG DEBIAN_VERSION=Debian-10
@@ -79,9 +79,11 @@ RUN DEBIAN_FRONTEND=noninteractive pam-auth-update --package --remove unix
 #     DEBIAN_FRONTEND=noninteractive pam-auth-update --package && \
 #     del-pkg deps
 
+COPY veracrypt.png /veracrypt.png
+
 # Generate and install favicons.
 RUN \
-    APP_ICON_URL=https://raw.githubusercontent.com/dcflachs/docker-containers/master/veracrypt/veracrypt.png && \
+    APP_ICON_URL=veracrypt.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
 #########################################
