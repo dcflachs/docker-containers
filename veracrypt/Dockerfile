@@ -83,7 +83,7 @@ COPY veracrypt.png /veracrypt.png
 
 # Generate and install favicons.
 RUN \
-    APP_ICON_URL=veracrypt.png && \
+    APP_ICON_URL=/veracrypt.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
 #########################################
