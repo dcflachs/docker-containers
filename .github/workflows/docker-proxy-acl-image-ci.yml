@@ -32,12 +32,13 @@ jobs:
         shell: bash
         working-directory: ./app
         run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
         
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -47,14 +48,15 @@ jobs:
         uses: docker/setup-buildx-action@master
      
       - name: Login to DockerHub 
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       
       - name: Docker Repo
         id: repo
-        run: echo "::set-output name=repo::dcflachs/docker-proxy-acl"
+        run: echo "repo=dcflachs/docker-proxy-acl" >> $GITHUB_OUTPUT
+
       
       - name: Set Main Tag
         id: main_tag
@@ -62,14 +64,14 @@ jobs:
         run: |
           if [[ "${{ steps.sha.outputs.branch }}" == "master" ]]
           then
-            echo "::set-output name=tag::latest"
+            echo "tag=latest" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=tag::beta"
+            echo "tag=beta" >> $GITHUB_OUTPUT
           fi
       
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: ./build/docker-proxy-acl
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7
