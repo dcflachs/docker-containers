@@ -17,7 +17,8 @@ ENV GROUP_ID=100
 ENV UMASK=000
 
 # Gui App Name default is "GUI_APPLICATION"
-ENV APP_NAME="VeraCrypt"
+RUN set-cont-env APP_NAME "VeraCrypt"
+RUN set-cont-env APP_VERSION $VERACRYPT_VERSION
 
 # Default resolution, change if you like
 ENV DISPLAY_WIDTH=1280
@@ -56,16 +57,16 @@ RUN \
 	del-pkg build-dependencies
 
 # Copy X app start script to correct location
-COPY startapp.sh /startapp.sh
+COPY --chmod=777 startapp.sh /startapp.sh
 
 # Copy default configuration file to correct location
 COPY Configuration.xml /defaults/Configuration.xml
 
 # Add veracrypt init script
-COPY veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
+COPY --chmod=777 veracrypt.sh /etc/cont-init.d/90-veracrypt.sh
 
 # Add veracrypt sudoers script
-COPY sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
+COPY --chmod=777 sudoers.sh /etc/cont-init.d/01-veracrypt-sudoers.sh
 
 # Add dismount script
 COPY --chmod=777 dismount /etc/cont-finish.d/dismount
