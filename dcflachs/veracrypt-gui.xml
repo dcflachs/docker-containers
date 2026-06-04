@@ -12,7 +12,7 @@
   <Category>Tools: Status:Beta</Category>
   <WebUI>http://[IP]:[PORT:5800]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/dcflachs/docker-containers/templates/dcflachs/veracrypt-gui.xml</TemplateURL>
-  <Icon>http://www.top-windows-tutorials.com/images/2013/04/veracrypt-logo.png</Icon>
+  <Icon>https://raw.githubusercontent.com/dcflachs/docker-containers/master/veracrypt/veracrypt.png</Icon>
   <ExtraParams>--log-opt max-size=50m --log-opt max-file=1</ExtraParams>
   <PostArgs/>
   <DateInstalled>1518281890</DateInstalled>
