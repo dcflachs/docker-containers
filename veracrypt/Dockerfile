@@ -2,7 +2,7 @@ ARG DEBIAN_VERSION=debian-11-v4
 FROM jlesage/baseimage-gui:${DEBIAN_VERSION}
 
 ARG DEBIAN_VERSION=Debian-11
-ARG VERACRYPT_VERSION=1.26.24
+ARG VERACRYPT_VERSION=1.26.29
 
 MAINTAINER dcflachs
 
@@ -25,10 +25,10 @@ ENV DISPLAY_WIDTH=1280
 ENV DISPLAY_HEIGHT=720
 
 # Use a secure connection to the GUI
-ENV SECURE_CONNECTION 1
+ENV SECURE_CONNECTION=1
 
 # Clean tmp on startup
-ENV CLEAN_TMP_DIR 1
+ENV CLEAN_TMP_DIR=1
 
 # Install packages needed for app
 RUN \
@@ -49,12 +49,12 @@ RUN \
 ##    REPOSITORIES AND DEPENDENCIES    ##
 #########################################
 RUN \
-	add-pkg --virtual build-dependencies \
+    add-pkg --virtual build-dependencies \
         wget ca-certificates gnupg && \
-	wget -nv https://launchpad.net/veracrypt/trunk/$VERACRYPT_VERSION/+download/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
-    dpkg -i veracrypt.deb && \
-    rm veracrypt.deb && \
-	del-pkg build-dependencies
+        wget -nv https://github.com/veracrypt/VeraCrypt/releases/download/VeraCrypt_$VERACRYPT_VERSION/veracrypt-$VERACRYPT_VERSION-$DEBIAN_VERSION-amd64.deb -O veracrypt.deb && \
+        dpkg -i veracrypt.deb && \
+        rm veracrypt.deb && \
+    del-pkg build-dependencies
 
 # Copy X app start script to correct location
 COPY --chmod=777 startapp.sh /startapp.sh
